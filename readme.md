@@ -1,12 +1,16 @@
-## SIMPAD
+# SIMPAKOL
+
+### Sistem Informasi Managemen Pajak Online
+
 ![GitHub](https://img.shields.io/github/license/hanzo-asashi/simpad.git)
 ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/hanzo-asashi/simpad?sort=semver)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/hanzo-asashi/simpad)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/hanzo-asashi/simpad)
 
-### Introduction 
+### Introduction
 
-This app will contains the core functionality for apps. Like user role and permissions management, Notification management, Settings etc. The goal of this apps is to provide a minimum interface for developers to start their project.
+This app will contains the core functionality for apps. Like user role and permissions management, Notification management, Settings etc. The goal of this apps is to provide a
+minimum interface for developers to start their project.
 
 # Installation
 
