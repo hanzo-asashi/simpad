@@ -1,4 +1,8 @@
 ## SIMPAD
+![GitHub](https://img.shields.io/github/license/hanzo-asashi/simpad.git)
+![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/hanzo-asashi/simpad?sort=semver)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/hanzo-asashi/simpad)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/hanzo-asashi/simpad)
 
 ### Introduction 
 
