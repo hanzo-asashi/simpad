@@ -1,4 +1,4 @@
-# SIMPAKOL
+# **SIMPAKOL**
 
 ### Sistem Informasi Managemen Pajak Online
 
@@ -14,7 +14,7 @@ minimum interface for developers to start their project.
 
 # Installation
 
-Clone this repository 
+Clone this repository
 
 ```Link will be provided```
 
@@ -26,11 +26,11 @@ Run npm
 
 ```npm install```
 
-Build CSS and Js by running 
+Build CSS and Js by running
 
 ```npm run watch```
 
-Migrate database 
+Migrate database
 
 ```php artisan migrate```
 
@@ -38,23 +38,26 @@ Seed database with dummy data
 
 ```php artisan db:seed```
 
-Or you can run migration and seed together 
+Or you can run migration and seed together
 
 ```php artisan migrate --seed```
 
-#### Note: All API's link start with domain of your laravel apps 
+#### Note: All API's link start with domain of your laravel apps
+
 #### Note: All list is now returning json. We will change it to blade page after we implement the dashboard
+
 ### Warning: If you want to use this core in your project. Never ever extend any core base class directly. Like BaseService, BaseRepository etc.
 
-
 ### Roles and Permissions
-#### Roles API and resource: 
 
-List page blade location: ```core/auth/role/index```. Permission: view_roles 
+#### Roles API and resource:
 
-List page url(Get request): ```admin/auth/roles``` 
+List page blade location: ```core/auth/role/index```. Permission: view_roles
 
-Store role(Post request) 
+List page url(Get request): ```admin/auth/roles```
+
+Store role(Post request)
+
 ```
 url: admin/auth/roles
 role: {
@@ -70,7 +73,9 @@ role: {
 }
 Permission: create_roles
 ```
+
 Update Role(Patch request):
+
 ```
 url: admin/auth/roles/{id}
 role: {
@@ -85,7 +90,7 @@ role: {
     ]
 }
 Permission: update_roles
-``` 
+```
 
 Delete role(Delete request): ```admin/auth/roles/{id}```. Permission: ```delete_roles```
 
@@ -94,11 +99,13 @@ Permission lists(Get request): ```admin/auth/permissions```
 Group by added. if you don't want group you can pass. ```?without_group=1```
 
 #### Attach permissions to role
+
 Request type: POST,
 
 URL: ```admin/auth/roles/attach-permissions/{role_id}```
 
-data: 
+data:
+
 ```json
 {
   "permissions" : [
@@ -106,7 +113,9 @@ data:
   ]
 }
 ```
+
 or
+
 ```json
 {
   "permissions" : 1 //permission id
@@ -114,11 +123,13 @@ or
 ```
 
 #### Detach permissions from role
+
 Request type: POST,
 
 URL: ```admin/auth/roles/detach-permissions/{role_id}```
 
-data: 
+data:
+
 ```json
 {
   "permissions" : [
@@ -126,7 +137,9 @@ data:
   ]
 }
 ```
+
 or
+
 ```json
 {
   "permissions" : 1 //permission id
@@ -134,37 +147,42 @@ or
 ```
 
 #### Permission naming convention:
-- Roles and permissions are depends on route name. 
+
+- Roles and permissions are depends on route name.
 - Your route must include a name.
 - It can't be more than 2 index. Example: ```brands.list.index``` is not allowed.
 - Permission for a route name always formed as action comes to front and name goes to ends
-- If the route name is ```brands.index``` your permissions should be ```view_brands```. 
-- If your route has only one name the permission name should be manage_{route_name} . Example: ```dashboard``` named route's permission name will be formed as ```manage_dashboard```.
+- If the route name is ```brands.index``` your permissions should be ```view_brands```.
+- If your route has only one name the permission name should be manage_{route_name} . Example: ```dashboard``` named route's permission name will be formed
+  as ```manage_dashboard```.
 - If any route contains - for it's permission - will changed to _ for example: ```notification-settings.index```  named route permissions wll be ```view_notification_settings```
-- For resource routes like ```brands```. The last index of route name like ```store``` of ```brands.store``` will be the first index of permission name and will replaced by ```create```. So the permission name is ```create_brands```
+- For resource routes like ```brands```. The last index of route name like ```store``` of ```brands.store``` will be the first index of permission name and will replaced
+  by ```create```. So the permission name is ```create_brands```
 - Replacement for all 2 indexed route name in permission is bellow
+
 ```
  'store' -> 'create'
  'index' -> 'view'
  'destroy' -> 'delete'
  'show' -> 'view'
-``` 
+```
+
 __Note:__ Route name -> Replacement
 
-__Some example of route name and permission name:__ 
+__Some example of route name and permission name:__
 
-|Route name|Permission name|
-|----------|-------------|
-| users.index       |  view_users |
-| users.create  |    store_users   |
-| users.destroy     | delete_users |
-| users.update  | update_users | 
-| users.show        | view_users | 
-| notification-settings.index       | view_notification_settings | 
-| dashboard  | manage_dashboard | 
-
+| Route name                  | Permission name            |
+| ----------------------------- | ---------------------------- |
+| users.index                 | view_users                 |
+| users.create                | store_users                |
+| users.destroy               | delete_users               |
+| users.update                | update_users               |
+| users.show                  | view_users                 |
+| notification-settings.index | view_notification_settings |
+| dashboard                   | manage_dashboard           |
 
 ### Users:
+
 #### User API and Resource
 
 #### User list:
@@ -180,7 +198,7 @@ Request type: POST
 URL: ```admin/auth/users```
 
 Body:
- 
+
 ```
 {
     first_name: {first_name},
@@ -198,7 +216,7 @@ Request type: PATCH/PUT
 Url: ```admin/auth/users/{id}```
 
 Body:
- 
+
 ```
 {
     first_name: {first_name},
@@ -209,25 +227,28 @@ Body:
 }
 ```
 
-### Delete an user: 
+### Delete an user:
+
 Request type: DELETE
 
 Url: ```admin/auth/users/{id}```
 
+### Attach roles:
 
-### Attach roles: 
 Request type: POST
 
 Url: ```admin/auth/users/attach-roles/{user_id}```
 
-Data: 
+Data:
 
 ```
 { 
     roles: 2 
 }
 ```
+
 or
+
 ```
 { 
     roles: [role_id1, role_id2]
@@ -238,20 +259,21 @@ or
 
 Url: ```admin/auth/users/detach-roles/{user_id}```
 
-Data: 
+Data:
 
 ```
 { 
     roles: 2 
 }
 ```
+
 or
+
 ```
 { 
     roles: [role_id1, role_id2]
 }
 ```
-
 
 #### User setting list
 
@@ -260,12 +282,13 @@ Request type: GET
 URL: ```admin/auth/users/settings```
 
 #### Change user settings
+
 Request type: POST
 
 Url: ```admin/auth/users/change-settings```
 
 Data:
- 
+
 ```json5
 {
     "gender": "male/female/other",
@@ -277,13 +300,15 @@ Data:
     "last_name": "last_name"
 }
 ```
+
 #### Change Password
+
 Request type: POST
 
 Url: ```admin/auth/users/{user}/password/change```
 
 Data:
- 
+
 ```json5
 {
     old_password: '',
@@ -293,10 +318,12 @@ Data:
 ```
 
 ### User login api
+
 Page url: ```admin/users/login ```(Get request)
 
 url: ```/admin/users/login``` (post request)
-data: 
+data:
+
 ```json
 {
   "email": "example@example.com",
@@ -305,20 +332,24 @@ data:
 ```
 
 ### User log out API
+
 Request type: GET
 
 url: ``` admin/log-out```
 
 ### Logged in user API
+
 Request type: GET
 
 url: ```admin/authenticate-user```
 
 ### Change user profile picture
+
 Request type: 'POST'
 
 url: ```/admin/auth/users/profile-picture```
-data: 
+data:
+
 ```
 {
     email: ''
@@ -333,13 +364,16 @@ data:
 {
   "profile_picture": "formData file object"
 }
-``` 
+```
+
 ### User invite API
+
 Request type: POST,
 
 Url: ```admin/auth/users/invite-user```
 
-Data: 
+Data:
+
 ```json
 {
   "email": "youremail@example.com", 
@@ -351,12 +385,13 @@ Data:
 
 URl: ```admin/auth/users/cancel-invitation/{id}```
 
-Note: Only invited status user can be canceled 
+Note: Only invited status user can be canceled
 
 ### Confirm invited user API
-Request type: POST
-URL: ```users/confirm```
-Data: 
+
+Request type: POST URL: ```users/confirm```
+Data:
+
 ```json
 {
     "invitation_token" : "user invitation token from email",
@@ -366,27 +401,32 @@ Data:
 }
 ```
 
-### Password reset API 
+### Password reset API
+
 If you want to redirect to new page when user clicks on reset password button use ```users/password-reset``` url
 
 #### To request for a new reset password email
+
 url: ```users/password-reset```
 
 Request type: 'POST'
 
-data: 
+data:
+
 ```
 {
     email: 'reqquired'
 }
 ```
 
-#### To update the password 
+#### To update the password
+
 url: ```users/reset-password```
 
 Request type: 'POST'
 
-data: 
+data:
+
 ```
 {
     email: 'required',
@@ -395,16 +435,20 @@ data:
     password_confirmation: 'required'
 }
 ```
-Note: If you are using queue to proccess your email job. User invitation and password reset queue is high priority Queue. Check laravel docs for queue priority and also you have to migrate before you continue
 
-### Custom Field Builder: 
+Note: If you are using queue to proccess your email job. User invitation and password reset queue is high priority Queue. Check laravel docs for queue priority and also you have to
+migrate before you continue
+
+### Custom Field Builder:
+
 #### Custom Field builder API and Resource
 
-Request Type: GET 
+Request Type: GET
 
-URL: ```/admin/app/custom-fields```  
+URL: ```/admin/app/custom-fields```
 
 Result:
+
 ```
 [
   {
@@ -418,10 +462,11 @@ Result:
 ```
 
 Request Type: POST
- 
-URL: ```/admin/app/custom-fields```  
+
+URL: ```/admin/app/custom-fields```
 
 Body:
+
 ```json5
 {
     "custom_field_type_id":  1,
@@ -434,7 +479,7 @@ Body:
 }
 ```
 
-Result: 
+Result:
 
 ```json5
 {
@@ -447,11 +492,13 @@ Result:
     }
 }
 ```
+
 Request Type: PUT, PATCH
- 
-URL: ```/admin/app/custom-fields/{id}``` 
+
+URL: ```/admin/app/custom-fields/{id}```
 
 Body:
+
 ```
 {
   "context": "customers",
@@ -459,7 +506,7 @@ Body:
 }
 ```
 
-Result: 
+Result:
 
 ```
 {
@@ -472,10 +519,11 @@ Result:
 ```
 
 Request Type: DELETE
- 
-URL: ```/admin/app/custom-fields/{custom-field}``` 
+
+URL: ```/admin/app/custom-fields/{custom-field}```
 
 Result:
+
 ```json
 {
     "status": true,
@@ -484,11 +532,13 @@ Result:
 ```
 
 #### Custom Field builder types API and Resource
+
 Request Type: GET
- 
-URL: ```/admin/app/custom-field-types``` 
+
+URL: ```/admin/app/custom-field-types```
 
 Result:
+
 ```
 [
   {"name":  "textarea"},
@@ -497,17 +547,18 @@ Result:
 ```
 
 Request Type: POST
- 
-URL: ```/admin/app/custom-field-types``` 
+
+URL: ```/admin/app/custom-field-types```
 
 Body:
+
 ```json
 {
   "name": "radio_button"
 }
 ```
 
-Result: 
+Result:
 
 ```
 {
@@ -519,18 +570,20 @@ Result:
     }
 }
 ```
+
 Request Type: PUT/PATCH
- 
-URL: ```/admin/app/custom-field-types/{custom-fields-type}``` 
+
+URL: ```/admin/app/custom-field-types/{custom-fields-type}```
 
 Body:
+
 ```json
 {
   "name": "checkbox"
 }
 ```
 
-Result: 
+Result:
 
 ```json5
 {
@@ -543,10 +596,11 @@ Result:
 ```
 
 Request Type: DELETE
- 
-URL: ```/admin/app/custom-fields-types/{custom-fields-type}``` 
+
+URL: ```/admin/app/custom-fields-types/{custom-fields-type}```
 
 Result:
+
 ```json
 {
     "status": true,
@@ -554,17 +608,18 @@ Result:
 }
 ```
 
+### Global Settings:
 
-### Global Settings: 
 #### Settings API and Resource
 
 #### All settings
-Request Type: GET
- 
-URL: ```/admin/app/settings``` 
 
-Data must be formData object
-Result:
+Request Type: GET
+
+URL: ```/admin/app/settings```
+
+Data must be formData object Result:
+
 ```json5
 {
     "company_name": "Gaion Solution",
@@ -582,11 +637,13 @@ Result:
 ```
 
 ### Update settings
+
 Request Type: POST
- 
-URL: ```/admin/app/settings``` 
+
+URL: ```/admin/app/settings```
 
 Body:
+
 ```json5
 {
     "company_name": "Gaion Solution",
@@ -603,7 +660,7 @@ Body:
 }
 ```
 
-Result: 
+Result:
 
 ```json5
 {
@@ -613,6 +670,7 @@ Result:
 ```
 
 ### Delivery settings
+
 Request type: GET
 
 URL: ```admin/app/settings/delivery-settings``` (Default mail settings)
@@ -620,12 +678,14 @@ URL: ```admin/app/settings/delivery-settings``` (Default mail settings)
 For provider: ```admin/app/settings/delivery-settings/{Your provider name}```
 
 ### Update delivery settings
+
 Request type: POST
 
-Url: ```admin/app/settings/delivery-settings``` 
+Url: ```admin/app/settings/delivery-settings```
 
-#### Data: 
-Common and optional 
+#### Data:
+
+Common and optional
 
 ```json
 {
@@ -633,7 +693,9 @@ Common and optional
     "from_email": "Something@s.com"
 }
 ```
+
 Only for mailgun
+
 ```json5
 {
     "provider": "mailgun",
@@ -641,6 +703,7 @@ Only for mailgun
     "api_key": "secret",
 }
 ```
+
 Only for amazon ses
 
 ```json
@@ -653,48 +716,57 @@ Only for amazon ses
 ```
 
 ### Template CRUD
+
 #### List of template
+
 Request type: GET
 
 URL: ```admin/app/templates```
 
 #### Store template
+
 Request type: POST
 
 URL: ```admin/app/templates```
 
-data: 
+data:
+
 ```json
 {
   "subject": "", //optional
   "custom_content": ""
 }
-``` 
+```
 
 #### Update template
+
 Request type: PATCH
 
 URL: ```admin/app/templates/1```
 
-data: 
+data:
+
 ```json
 {
   "subject": "", //optional
   "custom_content": ""
 }
-``` 
+```
 
-#### Delete template 
+#### Delete template
+
 Request type: DELETE
 
 URL: ```admin/app/templates/1```
 
 ### Status Resource
+
 Request Type: GET
- 
-URL: ```/admin/app/statuses``` 
+
+URL: ```/admin/app/statuses```
 
 Result:
+
 ```json5
 [
     { "name": "active", "class": "primary"},
@@ -705,11 +777,13 @@ Result:
 ```
 
 ### Type Resource
+
 Request Type: GET
- 
-URL: ```/admin/app/types``` 
+
+URL: ```/admin/app/types```
 
 Result:
+
 ```json5
 [
     { "name": "app" },
@@ -719,11 +793,13 @@ Result:
 ```
 
 ### Activity Log Resource
+
 Request Type: GET
- 
-URL: ```/admin/app/activity-logs``` 
+
+URL: ```/admin/app/activity-logs```
 
 Result:
+
 ```
 [
     {
@@ -752,6 +828,7 @@ Result:
 ```
 
 ### Only authenticate user activity
+
 Request type: GET,
 
 URL: ```admin/user/activity-log```
@@ -760,12 +837,12 @@ URL: ```admin/user/activity-log```
 
 #### Notification events Resource
 
-
 Request Type: GET
- 
-URL: ```/admin/app/notification-events``` 
+
+URL: ```/admin/app/notification-events```
 
 Result:
+
 ```json5
 [
     { "name": "user_created" },
@@ -776,11 +853,13 @@ Result:
 ```
 
 #### Notification channels Resource
+
 Request Type: GET
- 
-URL: ```/admin/app/notification-channels``` 
+
+URL: ```/admin/app/notification-channels```
 
 Result:
+
 ```json5
 [
     { "name": "database" },
@@ -790,11 +869,13 @@ Result:
 ```
 
 #### Notification settings API Resources
+
 Request Type: GET
- 
-URL: ```/admin/app/notification-settings``` 
+
+URL: ```/admin/app/notification-settings```
 
 Result:
+
 ```json5
 [
     {
@@ -808,10 +889,11 @@ Result:
 ```
 
 Request Type: POST
- 
-URL: ```/admin/app/notification-settings``` 
+
+URL: ```/admin/app/notification-settings```
 
 Body:
+
 ```json5
 {
     "notification_event_id": 2,
@@ -827,7 +909,8 @@ Body:
     ]
 }
 ```
-Result: 
+
+Result:
 
 ```json5
 {
@@ -838,13 +921,14 @@ Result:
     }
 }
 ```
+
 Request Type: PUT, PATCH
- 
-URL: ```/admin/app/notification-settings/{notification-setting}``` 
+
+URL: ```/admin/app/notification-settings/{notification-setting}```
 
 Body: Same as POST body.
 
-Result: 
+Result:
 
 ```json5
 {
@@ -857,10 +941,11 @@ Result:
 ```
 
 Request Type: DELETE
- 
-URL: ```/admin/app/notification-settings/{notification-setting}``` 
+
+URL: ```/admin/app/notification-settings/{notification-setting}```
 
 Result:
+
 ```json5
 {
     "status": true,
@@ -870,12 +955,12 @@ Result:
 
 #### Notification template Resource
 
-
 Request Type: GET
- 
-URL: ```/admin/app/notification-templates/``` 
+
+URL: ```/admin/app/notification-templates/```
 
 Result:
+
 ```json5
 [
     {
@@ -890,10 +975,11 @@ Result:
 ```
 
 Request Type: POST
- 
-URL: ```/admin/app/notification-templates``` 
+
+URL: ```/admin/app/notification-templates```
 
 Body:
+
 ```json5
 {
     "subject": "Christmas Campaign Has Started",
@@ -901,7 +987,8 @@ Body:
     "type": "email", // sms/email/database (Required)
 }
 ```
-Result: 
+
+Result:
 
 ```json5
 {
@@ -912,13 +999,14 @@ Result:
     }
 }
 ```
+
 Request Type: PUT, PATCH
- 
-URL: ```/admin/app/notification-templates/{notification-template}``` 
+
+URL: ```/admin/app/notification-templates/{notification-template}```
 
 Body: Same as POST body.
 
-Result: 
+Result:
 
 ```json5
 {
@@ -931,10 +1019,11 @@ Result:
 ```
 
 Request Type: DELETE
- 
-URL: ```/admin/app/notification-templates/{notification-template}``` 
+
+URL: ```/admin/app/notification-templates/{notification-template}```
 
 Result:
+
 ```json5
 {
     "status": true,
@@ -942,13 +1031,13 @@ Result:
 }
 ```
 
+#### Attach Notification Templates to Event:
 
-#### Attach Notification Templates to Event: 
 Request type: POST
 
 URL: ```/admin/app/notification-events/{event}/attach-templates```
 
-Body: 
+Body:
 
 ```json5
 { 
@@ -957,20 +1046,22 @@ Body:
   ]
 }
 ```
+
 or
+
 ```json5
 { 
     "templates": 4
 }
 ```
 
-#### Detach Notification Templates to Event 
+#### Detach Notification Templates to Event
 
 Request type: POST
 
 URL: ```/admin/app/notification-events/{event}/detach-templates```
 
-Body: 
+Body:
 
 ```json5
 { 
@@ -979,7 +1070,9 @@ Body:
   ]
 }
 ```
+
 or
+
 ```json5
 { 
     "templates": 4
@@ -995,13 +1088,13 @@ notify()
     ->send(UserNotification::class);
 ```
 
-The above code itself self explanatory. ```notify()``` helper method will give a an instance of NotificationHelper. Look at the definition for insight.
-the on method itself is event holder this event will come from database defined by us. User will get notification based on this event. 
-See the definition for more info. With method is the method which will give you an access to pass data to your notification class. 
-Send method is the method will hold the notification class. Please look at the definition for more insight.
+The above code itself self explanatory. ```notify()``` helper method will give a an instance of NotificationHelper. Look at the definition for insight. the on method itself is
+event holder this event will come from database defined by us. User will get notification based on this event. See the definition for more info. With method is the method which
+will give you an access to pass data to your notification class. Send method is the method will hold the notification class. Please look at the definition for more insight.
 
 #### BaseNotificationClass
-This class look like bellow 
+
+This class look like bellow
 
 ```php
 abstract class BaseNotification extends Notification
@@ -1079,12 +1172,12 @@ abstract class BaseNotification extends Notification
 
 ```
 
-Just read the whole code. This class is abstract class which will held all laravel notification channel definition.
-And there is only one abstract method which is ParseNotification. Look at the UserNotification in core folder. There is a defination for this class. 
+Just read the whole code. This class is abstract class which will held all laravel notification channel definition. And there is only one abstract method which is
+ParseNotification. Look at the UserNotification in core folder. There is a defination for this class.
 
 ### User notifications
 
-List of notification: 
+List of notification:
 
 Request type: GET
 
@@ -1110,5 +1203,4 @@ URL: ```admin/user/notifications/mark-as-unread/{notification_id}```
 
 ## License
 
-This boilerplate, much like the Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT). 
-
+This boilerplate, much like the Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
