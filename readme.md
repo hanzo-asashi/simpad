@@ -1100,7 +1100,7 @@ Request type: POST
 
 URL: ```admin/user/notifications/mark-as-unread/{notification_id}```
 
-```
-### License 
-All copyrights reserved by Author. You will be needing a corporate license agreement to use this product. 
+## License
+
+This boilerplate, much like the Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT). 
 
